@@ -1,0 +1,423 @@
+body{
+margin:0;
+font-family:Segoe UI, Arial;
+background:#f5f7fa;
+}
+
+.mainLayout{
+display:flex;
+max-width:1200px;
+margin:auto;
+margin-top:70px;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:240px;
+background:white;
+border-right:1px solid #e5e7eb;
+padding:15px;
+}
+
+.menuItem{
+display:flex;
+align-items:center;
+padding:10px;
+border-radius:8px;
+margin-bottom:6px;
+cursor:pointer;
+}
+
+.menuItem:hover{
+background:#f3f4f6;
+}
+
+.menuItem.active{
+background:#e8f3ff;
+color:#1d9bf0;
+font-weight:600;
+}
+
+/* FEED */
+
+.feed{
+flex:1;
+background:white;
+border-left:1px solid #e5e7eb;
+border-right:1px solid #e5e7eb;
+}
+
+/* TRENDING */
+
+.trending{
+width:260px;
+background:white;
+border-left:1px solid #e5e7eb;
+padding:15px;
+}
+
+.trendItem{
+margin-bottom:10px;
+}
+
+/* POST */
+
+.post{
+padding:15px;
+border-bottom:1px solid #eee;
+}
+
+.postHeader{
+display:flex;
+align-items:center;
+margin-bottom:6px;
+}
+
+.avatar{
+width:36px;
+height:36px;
+background:#d1d5db;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-right:10px;
+}
+
+.badge{
+font-size:11px;
+padding:2px 6px;
+border-radius:6px;
+margin-left:6px;
+}
+
+.student{
+background:#dbeafe;
+color:#2563eb;
+}
+
+.teacher{
+background:#dcfce7;
+color:#16a34a;
+}
+
+.admin{
+background:#fef3c7;
+color:#d97706;
+}
+
+/* composer */
+
+.composer{
+padding:15px;
+border-bottom:1px solid #eee;
+}
+
+textarea{
+width:100%;
+border:none;
+resize:none;
+outline:none;
+font-size:14px;
+}
+
+.postBtn{
+background:#1d9bf0;
+color:white;
+border:none;
+padding:6px 14px;
+border-radius:20px;
+cursor:pointer;
+
+}
+.postActions{
+display:flex;
+justify-content:space-around;
+margin-top:10px;
+color:#6b7280;
+font-size:14px;
+cursor:pointer;
+}
+
+.postActions span:hover{
+color:#1d9bf0;
+}
+.adminBox{
+width:500px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+.updates-box{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 0 4px rgba(0,0,0,0.1);
+}
+
+.update-item{
+border-bottom:1px solid #eee;
+padding:10px 0;
+}
+
+.update-item:last-child{
+border-bottom:none;
+}
+.dashboard{
+background:white;
+padding:30px;
+border-radius:10px;
+width:400px;
+margin:auto;
+box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+.composer textarea{
+width:100%;
+padding:10px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+.postBtn{
+background:#1d9bf0;
+color:white;
+border:none;
+padding:8px 16px;
+border-radius:20px;
+cursor:pointer;
+}
+.postUser{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.username{
+font-weight:600;
+}
+
+.badge{
+font-size:11px;
+padding:2px 6px;
+border-radius:6px;
+}
+
+.student{
+background:#dbeafe;
+color:#2563eb;
+}
+
+.teacher{
+background:#dcfce7;
+color:#16a34a;
+}
+.navbar{
+height:60px;
+background:white;
+border-bottom:1px solid #e5e7eb;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 20px;
+position:fixed;
+width:100%;
+top:0;
+z-index:10;
+}
+
+.logo{
+display:flex;
+align-items:center;
+}
+
+.logoCircle{
+width:36px;
+height:36px;
+background:#1d9bf0;
+color:white;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-right:10px;
+}
+
+.navIcons{
+display:flex;
+gap:20px;
+font-size:18px;
+color:#4b5563;
+}
+
+.icon{
+cursor:pointer;
+}
+
+.icon:hover{
+color:#1d9bf0;
+}
+/* comment section */
+
+.commentSection{
+margin-top:12px;
+border-top:1px solid #eee;
+padding-top:10px;
+}
+
+/* comment list */
+
+.commentList{
+margin-bottom:10px;
+}
+
+/* each comment */
+
+.commentItem{
+display:flex;
+align-items:flex-start;
+margin-bottom:8px;
+}
+
+/* avatar */
+
+.commentAvatar{
+width:28px;
+height:28px;
+background:#d1d5db;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+font-weight:600;
+margin-right:8px;
+}
+
+/* comment content */
+
+.commentContent{
+background:#f3f4f6;
+padding:6px 10px;
+border-radius:10px;
+max-width:80%;
+}
+
+/* name */
+
+.commentAuthor{
+font-weight:600;
+font-size:13px;
+margin-right:6px;
+}
+
+/* text */
+
+.commentText{
+margin:2px 0 0 0;
+font-size:13px;
+}
+
+/* comment input */
+
+.commentBox{
+display:flex;
+margin-top:8px;
+gap:6px;
+}
+
+.commentBox input{
+flex:1;
+border:1px solid #ddd;
+border-radius:20px;
+padding:6px 12px;
+outline:none;
+font-size:13px;
+}
+
+.commentBox input:focus{
+border-color:#1d9bf0;
+}
+
+/* comment button */
+
+.commentBox button{
+background:#1d9bf0;
+color:white;
+border:none;
+padding:6px 14px;
+border-radius:20px;
+cursor:pointer;
+font-size:13px;
+}
+
+.commentBox button:hover{
+background:#1a8cd8;
+}
+/* login page */
+
+.loginPage{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#f5f7fa;
+}
+
+/* login card */
+
+.loginCard{
+width:340px;
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+text-align:center;
+}
+
+/* title */
+
+.loginCard h2{
+margin-bottom:5px;
+}
+
+.loginSubtitle{
+font-size:13px;
+color:#6b7280;
+margin-bottom:20px;
+}
+
+/* inputs */
+
+.loginCard input{
+width:100%;
+padding:10px;
+margin-bottom:12px;
+border:1px solid #ddd;
+border-radius:8px;
+outline:none;
+font-size:14px;
+}
+
+.loginCard input:focus{
+border-color:#1d9bf0;
+}
+
+/* login button */
+
+.loginCard button{
+width:100%;
+padding:10px;
+background:#1d9bf0;
+border:none;
+border-radius:8px;
+color:white;
+font-size:15px;
+cursor:pointer;
+}
+
+.loginCard button:hover{
+background:#1a8cd8;
+}
