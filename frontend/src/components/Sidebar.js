@@ -1,41 +1,44 @@
-import { FaHome, FaExclamationCircle, FaBell, FaEnvelope, FaUser } from "react-icons/fa";
+import { FaHome, FaExclamationCircle, FaBell, FaUsers, FaCog, FaInfoCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-function Sidebar(){
+function Sidebar() {
+  return (
+    <div className="sidebar">
 
-return(
+      <Link to="/dashboard" className="sidebarItem">
+        <FaHome className="sideIcon"/>
+        <span>Home</span>
+      </Link>
 
-<div className="sidebar">
+      <Link to="/complaint" className="sidebarItem">
+        <FaExclamationCircle className="sideIcon"/>
+        <span>Complaints</span>
+      </Link>
 
-<Link className="sidebarItem" to="/dashboard">
-<FaHome className="sideIcon"/>
-<span>Home</span>
-</Link>
+      <Link to="/announcements" className="sidebarItem">
+        <FaBell className="sideIcon"/>
+        <span>Announcements</span>
+      </Link>
 
-<Link className="sidebarItem" to="/complaint">
-<FaExclamationCircle className="sideIcon"/>
-<span>Complaints</span>
-</Link>
+      <Link to="/community" className="sidebarItem">
+        <FaUsers className="sideIcon"/>
+        <span>Community</span>
+      </Link>
 
-<Link className="sidebarItem" to="/announcements">
-<FaBell className="sideIcon"/>
-<span>Announcements</span>
-</Link>
+      <div className="sidebarDivider"/>
 
-<Link className="sidebarItem" to="/inbox">
-<FaEnvelope className="sideIcon"/>
-<span>Inbox</span>
-</Link>
+      <Link to="/settings" className="sidebarItem">
+        <FaCog className="sideIcon"/>
+        <span>Settings</span>
+      </Link>
 
-<Link className="sidebarItem" to="/profile">
-<FaUser className="sideIcon"/>
-<span>Profile</span>
-</Link>
+      <Link to="/about" className="sidebarItem">
+        <FaInfoCircle className="sideIcon"/>
+        <span>About</span>
+      </Link>
 
-</div>
-
-)
-
+    </div>
+  );
 }
 
 export default Sidebar;

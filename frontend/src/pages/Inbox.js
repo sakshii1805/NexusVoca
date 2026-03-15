@@ -1,79 +1,85 @@
+import { useState } from "react";
+import { FaSearch, FaPen } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { FaPen } from "react-icons/fa";
 
-function Inbox(){
-
-const navigate = useNavigate();
-
-const users = [
-{ id:1, name:"Rahul", msg:"Hey bro", time:"2m" },
-{ id:2, name:"Priya", msg:"Check announcement", time:"10m" },
-{ id:3, name:"Admin", msg:"Complaint received", time:"1h" },
-{ id:4, name:"Riya", msg:"Are you coming?", time:"3h" }
+const conversations = [
+  { id: 1, name: "Rahul Kumar", role: "Student", preview: "Hey, are you coming to the fest tomorrow?",    time: "2m",  unread: 2, online: true  },
+  { id: 2, name: "Dr. Ramesh",  role: "Teacher", preview: "Please submit your assignment by Friday.",       time: "15m", unread: 1, online: true  },
+  { id: 3, name: "Priya",       role: "Student", preview: "Check the announcement about internals.",        time: "1h",  unread: 0, online: false },
+  { id: 4, name: "Admin",       role: "Admin",   preview: "Your complaint has been received and reviewed.", time: "2h",  unread: 0, online: true  },
+  { id: 5, name: "Riya",        role: "Student", preview: "Did you see the new library hours?",            time: "5h",  unread: 0, online: false },
+  { id: 6, name: "Arjun",       role: "Student", preview: "Let's form a study group for the exam.",        time: "1d",  unread: 0, online: false },
 ];
 
-return(
+function Inbox() {
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
-<div className="inboxPage">
+  const filtered = conversations.filter(c =>
+    c.name.toLowerCase().includes(query.toLowerCase()) ||
+    c.preview.toLowerCase().includes(query.toLowerCase())
+  );
 
-{/* Header */}
+  const roleColor = (role) => {
+    if (role === "Teacher") return "teacher";
+    if (role === "Admin")   return "admin";
+    return "student";
+  };
 
-<div className="inboxHeader">
-<h2>Messages</h2>
-<FaPen className="composeIcon"/>
-</div>
+  return (
+    <div className="inboxPage">
 
-{/* Search */}
+      <div className="inboxHeader">
+        <h2>Messages</h2>
+        <FaPen className="composeIcon" title="New message" />
+      </div>
 
-<input
-className="searchBar"
-placeholder="Search messages"
-/>
+      <div className="inboxSearch">
+        <FaSearch className="inboxSearchIcon" />
+        <input
+          placeholder="Search messages..."
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+        />
+      </div>
 
-{/* Active users row */}
+      <div className="inboxList">
+        {filtered.length === 0 && (
+          <p className="inboxEmpty">No conversations found.</p>
+        )}
 
-<div className="activeUsers">
+        {filtered.map(c => (
+          <div
+            key={c.id}
+            className={`inboxRow ${c.unread > 0 ? "inboxRow--unread" : ""}`}
+            onClick={() => navigate(`/chat/${c.name}`)}
+          >
+            {/* Avatar with online dot */}
+            <div className="inboxAvatarWrap">
+              <div className="inboxAvatar">{c.name.charAt(0)}</div>
+              <span className={`onlineDot ${c.online ? "online" : "offline"}`} />
+            </div>
 
-{users.map(user=>(
-<div key={user.id} className="activeUser">
-<div className="userCircle">{user.name.charAt(0)}</div>
-<span>{user.name}</span>
-</div>
-))}
+            <div className="inboxInfo">
+              <div className="inboxMeta">
+                <span className="inboxName">{c.name}</span>
+                <span className={`badge ${roleColor(c.role)}`}>{c.role}</span>
+              </div>
+              <p className="inboxPreview">
+                {c.online ? "🟢 Active now • " : ""}{c.preview}
+              </p>
+            </div>
 
-</div>
+            <div className="inboxRight">
+              <span className="inboxTime">{c.time}</span>
+              {c.unread > 0 && <span className="inboxBadge">{c.unread}</span>}
+            </div>
+          </div>
+        ))}
+      </div>
 
-{/* Chat list */}
-
-<div className="chatList">
-
-{users.map(user=>(
-<div
-key={user.id}
-className="chatRow"
-onClick={()=>navigate(`/chat/${user.name}`)}
->
-
-<div className="chatAvatar">
-{user.name.charAt(0)}
-</div>
-
-<div className="chatInfo">
-<b>{user.name}</b>
-<p>{user.msg}</p>
-</div>
-
-<span className="chatTime">{user.time}</span>
-
-</div>
-))}
-
-</div>
-
-</div>
-
-)
-
+    </div>
+  );
 }
 
-export default Inbox
+export default Inbox;

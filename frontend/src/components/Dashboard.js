@@ -27,7 +27,7 @@ text:text
 
 setText("");
 
-window.location.reload();
+alert("Post created successfully");
 
 }catch(err){
 
@@ -61,4 +61,3 @@ Post
 }
 
 export default CreatePost;
-

@@ -1,78 +1,55 @@
 import { useEffect, useState } from "react";
 
-function Trending({ posts = [], onTagClick }) {
-
-const [topics,setTopics] = useState([]);
-
-// default tags created ONCE
 const defaultTags = {
-"#event":54,
-"#exam":89,
-"#library":52,
-"#placement":32,
-"#hostel":1
+  "#ExamSchedule": 128,
+  "#CampusFest2026": 95,
+  "#LibraryHours": 42,
+  "#PlacementDrive": 67
 };
 
-useEffect(()=>{
+function Trending({ onTagClick }) {
 
-let map = {...defaultTags};
+  const [topics, setTopics] = useState([]);
 
-// count hashtags from posts
-posts.forEach(post => {
+  useEffect(() => {
 
-if(!post.text) return;
+    let trendArray = Object.keys(defaultTags).map(tag => ({
+      name: tag,
+      count: defaultTags[tag]
+    }));
 
-const tags = post.text.match(/#\w+/g) || [];
+    trendArray.sort((a, b) => b.count - a.count);
 
-tags.forEach(tag => {
+    setTopics(trendArray);
 
-const key = tag.toLowerCase();
+  }, []); // ✅ empty array - runs only once
 
-map[key] = (map[key] || 0) + 1;
+  return (
 
-});
+    <div className="trending">
 
-});
+      <h3>Trending on Campus</h3>
 
-// convert object to array
-let trendArray = Object.keys(map).map(tag => ({
-name: tag,
-count: map[tag]
-}));
+      {topics.map((t, index) => (
+        <div className="trendCard" key={index}>
 
-// sort by popularity
-trendArray.sort((a,b)=> b.count - a.count);
+          <span
+            className="trendTag"
+            onClick={() => onTagClick && onTagClick(t.name)}
+          >
+            {t.name}
+          </span>
 
-setTopics(trendArray);
+          <span className="trendCount">
+            {t.count} posts
+          </span>
 
-},[posts]);
+        </div>
+      ))}
 
-return(
+    </div>
 
-<div className="trending">
-
-<h3>Trending</h3>
-
-{topics.map((t,index)=>(
-<div className="trendCard" key={index}>
-
-<span
-className="trendTag"
-onClick={()=>onTagClick && onTagClick(t.name)}
->
-{t.name}
-</span>
-
-<span className="trendCount">
-{t.count} posts
-</span>
-
-</div>
-))}
-
-</div>
-
-);
+  );
 
 }
 

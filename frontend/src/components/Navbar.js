@@ -1,57 +1,40 @@
-import { FaSearch, FaBell, FaEnvelope, FaUserCircle } from "react-icons/fa"
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { FaSearch, FaBell, FaEnvelope, FaUserCircle, FaSun, FaMoon } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-function Navbar(){
+function Navbar({ darkMode, setDarkMode }) {
+  return (
+    <div className="navbar">
+      <div className="logo">
+        <div className="logoCircle">NV</div>
+        <b>Nexus Voca</b>
+      </div>
 
-const navigate = useNavigate();
-const [showSearch,setShowSearch] = useState(false);
+      <div className="navIcons">
 
-return(
+        <Link to="/search">
+          <FaSearch className="icon" />
+        </Link>
 
-<div className="navbar">
+        <Link to="/notifications">
+          <FaBell className="icon" />
+        </Link>
 
-<div className="logo">
-    {showSearch && (
-<input 
-className="navSearch"
-placeholder="Search students..."
-/>
-)}
+        <Link to="/inbox">
+          <FaEnvelope className="icon" />
+        </Link>
 
-<div className="logoCircle">NV</div>
-<b>Nexus Voca</b>
+        <Link to="/profile">
+          <FaUserCircle className="icon" />
+        </Link>
 
-</div>
+        {/* Dark / Light toggle */}
+        <button className="themeToggle" onClick={() => setDarkMode(!darkMode)}>
+          {darkMode ? <FaSun className="icon" /> : <FaMoon className="icon" />}
+        </button>
 
-<div className="navIcons">
-
-<FaSearch
-className="icon"
-onClick={()=>navigate("/search")}
-/>
-
-<FaBell 
-className="icon"
-onClick={() => navigate("/notifications")}
-/>
-
-<FaEnvelope
-className="icon"
-onClick={()=>navigate("/inbox")}
-/>
-
-<FaUserCircle
-className="icon"
-onClick={() => navigate("/profile")}
-/>
-
-</div>
-
-</div>
-
-)
-
+      </div>
+    </div>
+  );
 }
 
-export default Navbar
+export default Navbar;

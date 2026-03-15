@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-function PostComposer(){
+function PostComposer({ setPosts }) {
 
 const [text,setText] = useState("");
 
@@ -21,14 +21,15 @@ return;
 
 try{
 
-await axios.post("http://localhost:5000/api/posts",{
+const res = await axios.post("http://localhost:5000/api/posts",{
 author:user.name,
 role:user.role,
 text:text
 });
 
+setPosts(prev => [res.data, ...prev]);
+
 setText("");
-window.location.reload();
 
 }catch(err){
 

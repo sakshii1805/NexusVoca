@@ -34,9 +34,12 @@ return(
 
 <FaBullhorn className="announcementIcon"/>
 
-<div>
-<b>{a.title}</b>
-<p className="announcementTime">{a.time} ago</p>
+<div className="announcementMeta">
+  <div className="announcementTopRow">
+    <b>{a.title}</b>
+    <span className="badge admin">Admin</span>
+  </div>
+  <p className="announcementTime">{a.time} ago</p>
 </div>
 
 </div>
