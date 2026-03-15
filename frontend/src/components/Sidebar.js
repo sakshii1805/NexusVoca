@@ -1,16 +1,36 @@
+import { FaHome, FaExclamationCircle, FaBell, FaEnvelope, FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 function Sidebar(){
 
 return(
 
 <div className="sidebar">
 
-<div className="menuItem active">Home</div>
-<div className="menuItem">Complaints</div>
-<div className="menuItem">Dashboard</div>
-<div className="menuItem">Teacher Panel</div>
-<div className="menuItem">Announcements</div>
-<div className="menuItem">Community</div>
-<div className="menuItem">Settings</div>
+<Link className="sidebarItem" to="/dashboard">
+<FaHome className="sideIcon"/>
+<span>Home</span>
+</Link>
+
+<Link className="sidebarItem" to="/complaint">
+<FaExclamationCircle className="sideIcon"/>
+<span>Complaints</span>
+</Link>
+
+<Link className="sidebarItem" to="/announcements">
+<FaBell className="sideIcon"/>
+<span>Announcements</span>
+</Link>
+
+<Link className="sidebarItem" to="/inbox">
+<FaEnvelope className="sideIcon"/>
+<span>Inbox</span>
+</Link>
+
+<Link className="sidebarItem" to="/profile">
+<FaUser className="sideIcon"/>
+<span>Profile</span>
+</Link>
 
 </div>
 
@@ -18,4 +38,4 @@ return(
 
 }
 
-export default Sidebar
+export default Sidebar;

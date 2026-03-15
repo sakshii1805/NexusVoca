@@ -1,64 +1,67 @@
-import React, { useState } from "react";
+import { FaUserCircle, FaHeart, FaComment } from "react-icons/fa";
 
-function Complaint() {
+function Complaint(){
 
-const [text, setText] = useState("");
-
-const submitComplaint = async () => {
-
-if(text.trim() === ""){
-alert("Please write a complaint first");
-return;
-}
-
-try{
-
-const res = await fetch("http://localhost:5000/api/complaint",{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
+const complaints = [
+{
+user:"Rahul",
+text:"Library AC is not working properly. It becomes very hot during afternoon lectures.",
+time:"2h"
 },
-body: JSON.stringify({ message: text })
-});
-
-const data = await res.json();
-
-alert(data.message || "Complaint submitted");
-
-setText("");
-
-}catch(err){
-
-console.log(err);
-alert("Failed to submit complaint");
-
+{
+user:"Sneha",
+text:"The canteen food quality has dropped recently. Please check hygiene.",
+time:"4h"
+},
+{
+user:"Arjun",
+text:"WiFi in Block B is extremely slow during classes.",
+time:"6h"
 }
-
-};
+];
 
 return(
 
-<div style={{textAlign:"center", marginTop:"100px"}}>
+<div className="complaintPage">
 
-<h2>Submit Complaint</h2>
+<h2 className="complaintTitle">Student Complaints</h2>
 
-<textarea
-rows="5"
-cols="40"
-placeholder="Write your complaint..."
-value={text}
-onChange={(e)=>setText(e.target.value)}
-/>
+{complaints.map((c,index)=>(
 
-<br/><br/>
+<div className="complaintCard" key={index}>
 
-<button onClick={submitComplaint}>
-Submit
-</button>
+<div className="complaintHeader">
+
+<FaUserCircle className="complaintAvatar"/>
+
+<div>
+<b>{c.user}</b>
+<p className="complaintTime">{c.time} ago</p>
+</div>
 
 </div>
 
-);
+<p className="complaintText">{c.text}</p>
+
+<div className="complaintActions">
+
+<div>
+<FaHeart className="actionIcon"/> Like
+</div>
+
+<div>
+<FaComment className="actionIcon"/> Comment
+</div>
+
+</div>
+
+</div>
+
+))}
+
+</div>
+
+)
 
 }
 

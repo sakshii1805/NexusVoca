@@ -1,55 +1,55 @@
-import React, { useEffect, useState } from "react";
+import { FaBullhorn } from "react-icons/fa";
 
 function Announcements(){
 
-const [announcements,setAnnouncements] = useState([]);
-const [loading,setLoading] = useState(true);
-
-useEffect(()=>{
-
-fetch("http://localhost:5000/api/announcements")
-
-.then(res => res.json())
-
-.then(data => {
-setAnnouncements(data);
-setLoading(false);
-})
-
-.catch(err => {
-console.log(err);
-setLoading(false);
-});
-
-},[]);
-
-if(loading){
-return <p>Loading announcements...</p>;
+const announcements = [
+{
+title:"Holiday Notice",
+text:"College will remain closed tomorrow due to heavy rain.",
+time:"1h"
+},
+{
+title:"Exam Schedule",
+text:"Mid semester exams will start from 25th March.",
+time:"3h"
+},
+{
+title:"Workshop",
+text:"AI & Machine Learning workshop on Friday in Seminar Hall.",
+time:"1d"
 }
+];
 
 return(
 
-<div className="updates-box">
+<div className="announcementPage">
 
-<h3>College Announcements</h3>
+<h2 className="announcementTitle">Announcements</h2>
 
-{announcements.length === 0 && (
-<p>No announcements yet</p>
-)}
+{announcements.map((a,index)=>(
 
-{announcements.map((a)=>(
-<div key={a._id} className="update-item">
+<div className="announcementCard" key={index}>
 
-<strong>Admin</strong>
+<div className="announcementHeader">
 
-<p>{a.text}</p>
+<FaBullhorn className="announcementIcon"/>
+
+<div>
+<b>{a.title}</b>
+<p className="announcementTime">{a.time} ago</p>
+</div>
 
 </div>
+
+<p className="announcementText">{a.text}</p>
+
+</div>
+
 ))}
 
 </div>
 
-);
+)
 
 }
 

@@ -3,9 +3,7 @@ const mongoose = require("mongoose");
 const PostSchema = new mongoose.Schema({
 
 author:String,
-
 role:String,
-
 text:String,
 
 likes:{

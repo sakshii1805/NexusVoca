@@ -41,7 +41,27 @@ return(
 
 </div>
 
-<p className="postText">{post.text}</p>
+<p className="postText">
+
+{post.text.split(" ").map((word,index)=>{
+
+if(word.startsWith("#")){
+return(
+<span
+key={index}
+className="hashtag"
+onClick={()=>window.location.href=`/tag/${word.substring(1)}`}
+>
+{word}{" "}
+</span>
+)
+}
+
+return word + " "
+
+})}
+
+</p>
 
 <div className="postActions">
 
@@ -56,8 +76,6 @@ return(
 </span>
 
 </div>
-
-{/* comments appear only when clicked */}
 
 {showComments && (
 
