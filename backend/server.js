@@ -17,41 +17,81 @@ mongoose.connect("mongodb://127.0.0.1:27017/nexusvoca")
 .catch(err=>console.log(err));
 
 /* LOGIN API */
-/* LOGIN API */
 app.post("/api/login",(req,res)=>{
 
-const {username,password,email} = req.body;
+const {username,email,password} = req.body;
 
-if(username==="student" && password==="1234"){
-res.json({
-success:true,
-user:{name:"Student",role:"student",email}
-});
+const users = [
+
+{
+username:"rahul",
+email:"rahul@college.edu",
+password:"password",
+name:"Rahul Kumar",
+role:"student"
+},
+
+{
+username:"priya",
+email:"priya@college.edu",
+password:"password",
+name:"Priya",
+role:"student"
+},
+
+{
+username:"ramesh.teacher",
+email:"ramesh@college.edu",
+password:"teacher123",
+name:"Dr. Ramesh",
+role:"teacher"
 }
 
-else if(username==="teacher" && password==="1234"){
+];
+
+const user = users.find(
+u => u.username===username && u.email===email && u.password===password
+);
+
+if(user){
+
 res.json({
 success:true,
-user:{name:"Teacher",role:"teacher",email}
-});
+user:{
+name:user.name,
+role:user.role,
+email:user.email
 }
-
-else if(username==="admin" && password==="1234"){
-res.json({
-success:true,
-user:{name:"Admin",role:"admin",email}
 });
-}
 
-else if(username==="sakshi" && password==="1234"){
-res.json({
-success:true,
-user:{name:"Sakshi",role:"student",email}
-});
-}
+}else{
 
-else{
 res.json({success:false});
+
+}
+
+});
+/* CREATE POST */
+app.post("/api/posts", async (req,res)=>{
+
+try{
+
+const {author,role,text} = req.body;
+
+const newPost = new Post({
+author,
+role,
+text,
+likes:0
+});
+
+await newPost.save();
+
+res.json(newPost);
+
+}
+catch(err){
+res.status(500).json({error:err.message});
 }
 
 });
