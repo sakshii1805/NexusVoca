@@ -6,6 +6,7 @@ import Signup from "./components/Signup";
 import Feed from "./components/Feed";
 import Complaint from "./components/Complaint";
 import Announcements from "./components/Announcements";
+import AdminDashboard from "./components/AdminDashboard";
 
 import Search from "./pages/Search";
 import Inbox from "./pages/Inbox";
@@ -56,10 +57,11 @@ function App() {
         <Route element={<Layout darkMode={darkMode} setDarkMode={setDarkMode} />}>
           <Route path="/dashboard"     element={<Feed />} />
           <Route path="/complaint"     element={<Complaint />} />
+          <Route path="/admin"         element={<AdminDashboard />} />
           <Route path="/announcements" element={<Announcements />} />
           <Route path="/search"        element={<Search />} />
           <Route path="/inbox"         element={<Inbox />} />
-          <Route path="/chat/:name"    element={<Chat />} />
+          <Route path="/chat/:id"      element={<Chat />} />
           <Route path="/profile"       element={<Profile />} />
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/community"     element={<Community />} />

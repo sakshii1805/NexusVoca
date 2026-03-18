@@ -1,7 +1,10 @@
-import { FaHome, FaExclamationCircle, FaBell, FaUsers, FaCog, FaInfoCircle } from "react-icons/fa";
+import { FaHome, FaExclamationCircle, FaBell, FaUsers, FaCog, FaInfoCircle, FaChartBar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 function Sidebar() {
+  const user = JSON.parse(localStorage.getItem("user") || "null");
+  const isAdmin = user && String(user.role).toLowerCase() === "admin";
+
   return (
     <div className="sidebar">
 
@@ -12,13 +15,20 @@ function Sidebar() {
 
       <Link to="/complaint" className="sidebarItem">
         <FaExclamationCircle className="sideIcon"/>
-        <span>Complaints</span>
+        <span>Report Issues</span>
       </Link>
 
       <Link to="/announcements" className="sidebarItem">
         <FaBell className="sideIcon"/>
         <span>Announcements</span>
       </Link>
+
+      {isAdmin && (
+        <Link to="/admin" className="sidebarItem">
+          <FaChartBar className="sideIcon"/>
+          <span>Admin Dashboard</span>
+        </Link>
+      )}
 
       <Link to="/community" className="sidebarItem">
         <FaUsers className="sideIcon"/>
